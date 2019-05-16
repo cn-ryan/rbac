@@ -39,7 +39,7 @@ public class LoggerAspect {
     @AfterThrowing(value = "declareJointPointExpression()",throwing = "e")
     public void afterThrowing(JoinPoint joinPoint,Exception e){
         if(e instanceof BusinessException){
-            System.out.println("1111222");
+            System.out.println("3333");
         }
     }
 
