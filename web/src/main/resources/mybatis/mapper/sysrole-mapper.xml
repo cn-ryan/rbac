@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ryan.rbac.dao.SysRoleMapper">
+    <!--     <sql id="table">my_employee</sql> -->
+    <!--     <sql id="selectFields">id,title, content,comment_count,created_date,user_id</sql> -->
+
+    <select id="getById" resultType="sysRole">
+    	select * from sys_role where id = #{id}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into sys_role (rolename,create_user,create_date,create_time)
+        values(#{rolename},#{createUser},#{createDate},#{createTime})
+    </insert>
+    <update id="update">
+        update sys_user set
+                rolename = #{rolename},
+                last_user = #{lastUser},
+                last_date = #{lastDate},
+                last_time = #{lastTime}
+        where id = #{id}
+    </update>
+
+    <select id="getAll" resultType="sysRole">
+        select * from sys_role
+        <where>
+            <if test="rolename != null">
+                and rolename like concat('%',#{rolename},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <delete id="delete">
+        delete from sys_role where id = #{id}
+    </delete>
+
+    <delete id="deleteByIds">
+        delete from sys_role
+        <where>
+            id in
+            <foreach collection="list" item="item" open="(" separator="," close=")"  >
+                #{item}
+            </foreach>
+        </where>
+    </delete>
+
+    <delete id="deleteByRoleId">
+        delete from sys_role_premission where role_id = #{role_id}
+    </delete>
+
+    <insert id="saveAssign" useGeneratedKeys="true" keyColumn="id" >
+        insert into sys_role_premission(role_id,premission_id)
+        values
+        <foreach collection="premissionIds" item="premission_id" separator=",">
+            (#{role_id},#{premission_id})
+        </foreach>
+    </insert>
+</mapper>

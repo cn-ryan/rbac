@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ryan.rbac.dao.SysLogMapper">
+    <!--     <sql id="table">my_employee</sql> -->
+    <!--     <sql id="selectFields">id,title, content,comment_count,created_date,user_id</sql> -->
+
+    <select id="getById" resultType="sysLog">
+    	select * from sys_log where id = #{id}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into sys_log (op_url,user_name,ip,content,create_time)
+        values(#{op_url},#{user_name},#{ip},#{content},#{createTime})
+    </insert>
+</mapper>
