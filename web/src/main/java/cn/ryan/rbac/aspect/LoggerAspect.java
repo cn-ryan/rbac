@@ -39,7 +39,6 @@ public class LoggerAspect {
     @AfterThrowing(value = "declareJointPointExpression()",throwing = "e")
     public void afterThrowing(JoinPoint joinPoint,Exception e){
         if(e instanceof BusinessException){
-
         }
     }
 
