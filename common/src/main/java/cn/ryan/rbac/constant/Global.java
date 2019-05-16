@@ -50,6 +50,4 @@ public class Global {
      * 删除方法开头 del
      */
     public static final String DEL = "del";
-
-    public static final String TEST = "test";
 }
