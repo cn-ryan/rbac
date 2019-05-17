@@ -13,9 +13,9 @@ import java.io.*;
  **/
 @Slf4j
 public class SerializeUtil implements Serializable {
-    private volatile SerializeUtil instance = null;
+    private static volatile SerializeUtil instance = null;
 
-    public SerializeUtil getInstance(){
+    public static SerializeUtil getInstance(){
         if(instance == null){
             synchronized (SerializeUtil.class){
                 if(instance == null){
