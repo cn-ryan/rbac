@@ -30,7 +30,6 @@ public class IdEntity<E> implements Serializable {
     private Integer pId;
     private List<E> children = new ArrayList<E>();
 
-    @Override
     /**
      *@Description
      *@Param [obj]
@@ -39,6 +38,7 @@ public class IdEntity<E> implements Serializable {
      *@Date 2019/4/12
      *@Time 16:41
      */
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -51,6 +51,7 @@ public class IdEntity<E> implements Serializable {
             return this.getId().equals(other.getId());
         }
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
